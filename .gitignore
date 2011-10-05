@@ -1,0 +1,7 @@
+.DS_Store
+*.pyc
+*.log
+local_settings.py
+p27
+var
+
