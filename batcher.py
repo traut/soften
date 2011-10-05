@@ -1,16 +1,13 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from couchdb import client
-from couchdb.mapping import *
-from couchdb.http import ResourceNotFound
-from couchdb.design import ViewDefinition
-
-from multiprocessing import Pool
 import json
 
+from multiprocessing import Pool
 
-from .couch import CouchAPIError
+from couchdb.mapping import *
+
+from soften.couch import CouchAPIError
 
 import logging
 logging.basicConfig()
@@ -128,6 +125,7 @@ class ConcurrentBatchDocumentUpdater(BatchDocumentUpdater):
 
 try:
     import beanstalkc
+
 except ImportError:
     logging.error("Can't import beanstalkc. soften.batcher.BatchToQueuePusher will not work")
 
