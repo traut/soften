@@ -24,7 +24,7 @@ class Movie(couch.CustomDocument):
 
     year = IntegerField()
 
-    created = IntegerField(default=int(time.time()))
+    created = IntegerField(default=lambda: int(time.time()))
 
     changed = IntegerField()
 
