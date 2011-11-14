@@ -15,8 +15,9 @@ logging.basicConfig()
 def chunks(l, n):
     """ Yield successive n-sized chunks from l.
     """
-    for i in xrange(0, len(l), n):
-        yield l[i : i+n]
+    if n:
+        for i in xrange(0, len(l), n):
+            yield l[i : i+n]
 
 
 class BatchDocumentUpdater(object):
@@ -165,7 +166,7 @@ class QueuedBatchDocumentUpdater(BatchDocumentUpdater):
 
     def __init__(self, ids_list):
         self.ids = map(lambda x: {"id" : x}, ids_list)
-        self.batch_size = len(ids)
+        self.batch_size = len(self.ids)
 
         super(QueuedBatchDocumentUpdater, self).__init__()
 
