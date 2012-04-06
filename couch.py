@@ -17,7 +17,7 @@ class CustomDocument(mapping.Document):
         if not db:
             db = self.db
         if not db:
-            raise ValueError(u"No database to save to")
+            raise ValueError("No database to save to")
         return self.store(db)
 
 
@@ -30,8 +30,7 @@ class CouchAPIError(Exception):
 
 
 class CouchAPI(object):
-    def __init__(self, server='http://127.0.0.1:5984', \
-            login=None, password=None, database=None, design_docname=None, doc_class=CustomDocument()):
+    def __init__(self, server='http://127.0.0.1:5984', login=None, password=None, database=None, design_docname=None, doc_class=CustomDocument):
         self.design_docname = design_docname
         self.server = client.Server(server)
         self.doc_class = doc_class
@@ -61,9 +60,7 @@ class CouchAPI(object):
     def __view(self, view, with_key_value=False, include_docs=True, **args):
         view_iter = self.db.view('%s' % view, include_docs=include_docs, **args)
 
-        count = 0
         for r in view_iter.rows:
-            count += 1
             if r.doc:
                 if self.doc_class:
                     doc = self.doc_class.wrap(r.doc)
